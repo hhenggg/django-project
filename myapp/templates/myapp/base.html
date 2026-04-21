@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Registration{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            input[type="text"], input[type="email"], input[type="number"],
+            input[type="url"], input[type="password"], textarea, select {
+                @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900
+                       shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2
+                       focus:ring-indigo-500/20 transition;
+            }
+            select[multiple] { @apply min-h-[140px]; }
+            form p { @apply flex flex-col gap-1 mb-4; }
+            form p label { @apply text-sm font-semibold text-slate-700; }
+            .helptext { @apply text-xs text-slate-500 mt-1; }
+            ul.errorlist {
+                @apply text-sm text-red-700 bg-red-50 border border-red-200
+                       rounded-md px-3 py-2 mb-2 list-none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen">
+    <nav class="bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-4xl mx-auto px-5 py-3 flex flex-wrap items-center gap-1">
+            <span class="font-bold text-indigo-600 mr-5 tracking-tight">Mission 1</span>
+            <a href="{% url 'home' %}"
+               class="px-3 py-2 rounded-md text-sm text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 transition">Home</a>
+            <a href="{% url 'student_register' %}"
+               class="px-3 py-2 rounded-md text-sm text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 transition">Register Student</a>
+            <a href="{% url 'course_register' %}"
+               class="px-3 py-2 rounded-md text-sm text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 transition">Register Course</a>
+            <a href="{% url 'report' %}"
+               class="px-3 py-2 rounded-md text-sm text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 transition">Report</a>
+        </div>
+    </nav>
+    <main class="max-w-4xl mx-auto px-5 py-8">
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-7">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</body>
+</html>

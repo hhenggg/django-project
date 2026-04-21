@@ -1,0 +1,15 @@
+{% extends 'myapp/base.html' %}
+{% block title %}Course Register{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold tracking-tight mb-6">Course Register Form</h1>
+<form method="post" class="space-y-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"
+            class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-2.5
+                   text-sm font-semibold text-white shadow-sm hover:bg-indigo-700
+                   focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition">
+        Register
+    </button>
+</form>
+{% endblock %}

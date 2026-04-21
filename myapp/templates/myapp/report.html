@@ -1,0 +1,41 @@
+{% extends 'myapp/base.html' %}
+{% block title %}Report{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold tracking-tight mb-6">Students Registered per Course</h1>
+{% for course in courses %}
+    <section class="mb-8">
+        <h2 class="text-lg font-semibold text-slate-800 mb-3">
+            <span class="inline-block rounded-md bg-indigo-50 px-2 py-0.5 text-indigo-700 text-sm font-mono mr-2">{{ course.code }}</span>
+            {{ course.name }}
+        </h2>
+        {% if course.students %}
+        <div class="overflow-hidden rounded-lg border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200">
+                <thead class="bg-slate-50">
+                    <tr>
+                        <th class="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-600 w-12">#</th>
+                        <th class="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Name</th>
+                        <th class="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Email</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 bg-white">
+                {% for s in course.students %}
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="px-4 py-2 text-sm text-slate-500">{{ forloop.counter }}</td>
+                        <td class="px-4 py-2 text-sm font-medium text-slate-800">{{ s.first_name }} {{ s.last_name }}</td>
+                        <td class="px-4 py-2 text-sm text-slate-600">{{ s.email }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p class="text-sm italic text-slate-500">No students registered.</p>
+        {% endif %}
+    </section>
+{% empty %}
+    <p class="text-slate-600">No courses yet.
+        <a href="{% url 'course_register' %}" class="text-indigo-600 font-medium hover:underline">Create one</a>.
+    </p>
+{% endfor %}
+{% endblock %}
