@@ -2,4 +2,5 @@ asgiref==3.11.1
 Django==6.0.4
 dnspython==2.8.0
 pymongo==4.16.0
-sqlparse==0.5.5
+gunicorn==23.0.0
+whitenoise==6.8.2
